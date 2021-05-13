@@ -37,6 +37,7 @@ namespace WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
             //IoC Container Tek bir instance uygulama boyunca geçerli.
+            //AutoFac
             services.AddSingleton<IProductService,ProductManager>();
             services.AddSingleton<IProductDal, EfProductDal>();
         }
