@@ -43,7 +43,7 @@ namespace Business.Concrete
                 return result;
             }
             _productDal.Add(product);
-            return new SuccesResult(Messages.ProductAdded);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -53,22 +53,22 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<Product>>(Messages.MaintanceTime);
 
             }
-            return new SuccesDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductListed);
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccesDataResult<List<Product>>(_productDal.GetAll(p=>p.CategoryId == id));
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.CategoryId == id));
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccesDataResult<Product>(_productDal.Get(p => p.ProductId == productId),Messages.ProductListed);
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId),Messages.ProductListed);
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
-            return new SuccesDataResult<List<Product>>(_productDal.GetAll(p=>p.UnitPrice >= min && p.UnitPrice <= max));
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.UnitPrice >= min && p.UnitPrice <= max));
         }
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
@@ -78,7 +78,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintanceTime);
 
             }
-            return new SuccesDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
         [ValidationAspect(typeof(ProductValidator))]
@@ -94,7 +94,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }
-            return new SuccesResult();
+            return new SuccessResult();
         }
         private IResult CheckIfProductNameExists(string productName)
         {
@@ -104,7 +104,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.ProductNameAlreadyExists);
             }
-            return new SuccesResult();
+            return new SuccessResult();
         }
         private IResult CheckIfCategoryLimitExists()
         {
@@ -114,7 +114,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.CheckIfCategoryLimitExist);
             }
-            return new SuccesResult();
+            return new SuccessResult();
         }
 
     }
