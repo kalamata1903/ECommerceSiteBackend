@@ -5,18 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.DataAccess.EntityFramework
 {
-    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
-        where TEntity : class, IEntity, new()
-        where TContext : DbContext, new()
+    public class EfEntityRepositoryBase<TEntity,TContext>: IEntityRepository<TEntity>
+        where TEntity: class, IEntity, new()
+        where TContext : DbContext,new()
     {
-        public void Add(TEntity entity)
+        public void Add(TEntity entity) 
         {
-            //IDisposable Desing Pattern implementation  of C#
-            //Tek seferlik kullanım için bellekte yer açıyor ve işi bitince anında temizliyor.
+            //IDisposable pattern implementation of c#
             using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity);
